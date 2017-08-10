@@ -1,17 +1,18 @@
 package gaviria_holguin.juan_camilo.threads;
 
-public class Counter {
+class Counter {
     private byte count;
 
-    public void increment() {
+    void increment()
+    {
         count++;
     }
 
-    public void decrement() {
+    void decrement() {
         count--;
     }
 
-    public byte getCount() {
+    byte getCount() {
         return count;
     }
 }
