@@ -1,5 +1,6 @@
 package streams.dtos;
 
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.math.BigDecimal;
@@ -24,7 +25,7 @@ public class EmployeeDto {
 	
 	public EmployeeDto setBirthDate(LocalDate birthDate) {
 		EmployeeDto result = createCopy();
-		result.birthDate = birthDate != null ? birthDate.plus(0L, ChronoUnit.NANOS) : LocalDate.MIN;
+		result.birthDate = birthDate != null ? birthDate.plus(0L, ChronoUnit.DAYS) : LocalDate.MIN;
 		return result; 
 	}
 	
@@ -59,7 +60,7 @@ public class EmployeeDto {
 	}
 	
 	public LocalDate getBirthDate() {
-		return birthDate.plus(0L, ChronoUnit.NANOS);
+		return birthDate.plus(0L, ChronoUnit.DAYS);
 	}
 	
 	public String getCellPhoneNumber() {
@@ -84,12 +85,19 @@ public class EmployeeDto {
 	
 	private EmployeeDto createCopy() {
 		EmployeeDto result = new EmployeeDto();
-		result.birthDate = this.birthDate.plus(0L, ChronoUnit.NANOS);
+		result.birthDate = this.birthDate.plus(0L, ChronoUnit.DAYS);
 		result.cellPhoneNumber = this.cellPhoneNumber;
 		result.salary = this.salary.multiply(BigDecimal.ONE);
 		result.name = this.name;
 		result.gender = this.gender;
 		result.city = this.city;
 		return result;
+	}
+
+	@Override
+	public String toString() {
+		return birthDate.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+		  ", " + cellPhoneNumber + ", " + salary.toString() + ", " +
+		  name + ", " + gender.getGender() + ", " + city; 
 	}
 }

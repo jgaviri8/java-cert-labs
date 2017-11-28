@@ -35,6 +35,7 @@ public class EmployeeCSVFileSource implements EmployeeSource {
 				    .setCellPhoneNumber(cellPhoneNumber)
 				    .setSalary(salary)
 				    .setName(name)
+				    .setCity(city)
 				    .setGender(gender));
 			}
 		} catch (IOException ioe) {
